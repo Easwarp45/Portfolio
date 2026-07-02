@@ -56,7 +56,7 @@ function SectionHeader({ title, eyebrow, icon: Icon }: { title: string; eyebrow:
 }
 
 function ActionLink({ href, label, icon: Icon, variant = 'primary' }: { href: string; label: string; icon: ComponentType<{ className?: string }>; variant?: 'primary' | 'secondary'; }) {
-  const base = 'inline-flex items-center justify-center gap-2 rounded px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] transition-all duration-300';
+  const base = 'inline-flex h-10 w-full min-w-0 items-center justify-start gap-2 rounded px-3 text-[11px] font-semibold uppercase tracking-[0.18em] transition-all duration-300';
   const styles = variant === 'primary'
     ? 'border border-cyber-cyan/40 bg-cyber-cyan/15 text-cyber-cyan hover:bg-cyber-cyan/25 hover:text-white'
     : 'border border-white/10 bg-white/5 text-gray-300 hover:border-cyber-cyan/40 hover:text-white';
@@ -64,7 +64,7 @@ function ActionLink({ href, label, icon: Icon, variant = 'primary' }: { href: st
   return (
     <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer noopener' : undefined} className={`${base} ${styles}`}>
       <Icon className="h-3.5 w-3.5" />
-      <span>{label}</span>
+      <span className="truncate">{label}</span>
     </a>
   );
 }
@@ -200,7 +200,7 @@ export default function PortfolioSections({ activeSection, setActiveSection, onS
                 Open to internships, freelance work, and conversations about front-end systems, auth flows, or product design.
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
                 <ActionLink href="mailto:contact@easwar.dev" label="Email me" icon={Mail} />
                 <ActionLink href="https://github.com/Easwarp45" label="GitHub" icon={GithubIcon} variant="secondary" />
                 <ActionLink href="https://www.instagram.com/eswar.png/" label="Instagram" icon={ExternalLink} variant="secondary" />
