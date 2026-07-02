@@ -9,6 +9,7 @@ import OverlayHUD from '@/components/ui/OverlayHUD';
 import ContactForm from '@/components/ui/ContactForm';
 import ProjectsModal from '@/components/ui/ProjectsModal';
 import StackDetailsCard from '@/components/ui/StackDetailsCard';
+import PortfolioSections from '@/components/ui/PortfolioSections';
 import CustomCursor from '@/components/ui/CustomCursor';
 
 // Type definitions
@@ -67,21 +68,11 @@ export default function Home() {
       {/* 3D Viewport Translucent Readability Mask */}
       <div className="fixed inset-0 bg-[#020205]/60 backdrop-blur-[0.5px] pointer-events-none z-5" />
 
-      {/* Home Typographic Overlay */}
-      {activeSection === 'home' && (
-        <div className="absolute bottom-[18%] left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 z-20 pointer-events-auto font-mono text-center w-[90%] max-w-[500px]">
-          <h2 className="text-[10px] md:text-xs font-bold tracking-[0.18em] text-white text-glow-cyan uppercase whitespace-nowrap">
-            ROLE: FULL-STACK SOFTWARE ENGINEER // LOCATION: CHENNAI, IN
-          </h2>
-          <a
-            href="/Easwar_Resume.pdf"
-            download="Easwar_Resume.pdf"
-            className="px-5 py-2.5 border border-cyber-cyan/40 bg-cyber-cyan/10 hover:bg-cyber-cyan/20 text-cyber-cyan hover:text-white rounded text-[10px] font-bold tracking-widest uppercase transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] cursor-pointer"
-          >
-            [ DOWNLOAD_RESUME_DATA ]
-          </a>
-        </div>
-      )}
+      <PortfolioSections
+        activeSection={activeSection}
+        setActiveSection={handleSectionChange}
+        onSelectProject={handleSelectProject}
+      />
 
       {/* 3. 2D HUD Navigation Overlay */}
       <OverlayHUD

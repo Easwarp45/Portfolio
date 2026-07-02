@@ -23,47 +23,47 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     id: 'kanakku-platform',
-    name: 'Kanakku Platform',
-    category: 'Full-Stack Platform',
-    description: 'A sophisticated full-stack financial software system architecture built on top of a Supabase database cluster ecosystem, providing automated invoicing, real-time ledgers, and secure client portal gateways.',
-    tech: ['React', 'Next.js', 'Node.js', 'Supabase', 'PostgreSQL'],
+    name: 'Kanakku',
+    category: 'Finance Workflow',
+    description: 'An Indian-market expense tracker that helps people log spending, spot trends, and stay on top of day-to-day budgeting without adding friction.',
+    tech: ['Flutter', 'Supabase', 'Riverpod', 'PostgreSQL', 'Auth'],
     metrics: [
-      { label: 'Latency', value: '< 45ms' },
-      { label: 'Uptime Stability', value: '99.98%' },
-      { label: 'Active Users', value: '5.2k' }
+      { label: 'Focus', value: 'Budgeting' },
+      { label: 'Platform', value: 'Mobile' },
+      { label: 'Status', value: 'Shipping' }
     ],
-    liveUrl: 'https://kanakku.dev',
-    githubUrl: 'https://github.com/easwar',
+    liveUrl: '/demos/kanakku',
+    githubUrl: 'https://github.com/Easwarp45/kanakku',
     pos: [-16.0, 0.2, 0.5]
   },
   {
-    id: 'ibm-iitb-hub',
-    name: 'Advanced Analytics Hub',
-    category: 'Data Engineering & AI',
-    description: 'An advanced real-time data engine developed in collaboration with IBM and IIT Bombay residency frameworks. Processes and models massive data streams to output statistical prediction structures.',
-    tech: ['Python', 'React', 'Next.js', 'Node.js', 'PyTorch'],
+    id: 'keyforge-lab',
+    name: 'KeyForge',
+    category: 'Auth Experience',
+    description: 'A passwordless authentication and key-management concept exploring WebAuthn, SRP, and a cleaner sign-in flow for modern products.',
+    tech: ['Next.js', 'TypeScript', 'WebAuthn', 'Supabase', 'Node.js'],
     metrics: [
-      { label: 'Data Processed', value: '12TB' },
-      { label: 'Accuracy', value: '94.2%' },
-      { label: 'Latency', value: '< 120ms' }
+      { label: 'Flow', value: 'Passwordless' },
+      { label: 'Security', value: 'WebAuthn' },
+      { label: 'Focus', value: 'Trust' }
     ],
-    liveUrl: 'https://iitb.ac.in',
-    githubUrl: 'https://github.com/easwar',
+    liveUrl: '/demos/keyforge',
+    githubUrl: 'https://github.com/Easwarp45/keyforge',
     pos: [-13.8, 1.2, -0.5]
   },
   {
     id: 'quantum-portfolio',
     name: '3D Developer Portfolio',
     category: 'Creative Engineering',
-    description: 'An immersive, cinematic 3D developer portfolio built with Next.js, React Three Fiber, and GSAP. Features procedural geometry, mouse-reactive particle systems, cinematic camera paths, and a custom cyber cursor — the site you are viewing right now.',
+    description: 'An immersive developer portfolio that uses 3D composition, motion, and layered content to present projects and skills in a memorable way.',
     tech: ['Next.js', 'React Three Fiber', 'GSAP', 'Tailwind CSS', 'TypeScript'],
     metrics: [
       { label: 'Lighthouse', value: '95+' },
       { label: 'Load Time', value: '< 2.5s' },
-      { label: '3D Nodes', value: '150+' }
+      { label: 'Sections', value: '5+' }
     ],
-    liveUrl: '#',
-    githubUrl: 'https://github.com/easwar',
+    liveUrl: '/demos/portfolio',
+    githubUrl: 'https://github.com/Easwarp45/Portfolio',
     pos: [-12.0, -0.8, 0.5]
   }
 ];

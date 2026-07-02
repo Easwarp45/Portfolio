@@ -1,6 +1,6 @@
 'use client';
 
-import { Terminal, Mail, Cpu, FolderGit2, Send, Orbit } from 'lucide-react';
+import { Terminal, Mail, Cpu, FolderGit2, Send, Orbit, ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
@@ -148,11 +148,11 @@ export default function OverlayHUD({
 
             <div className="text-[10px] text-cyber-cyan border-b border-cyber-cyan/20 pb-1.5 font-bold flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 bg-cyber-cyan rounded-full animate-ping" />
-              <span>DIAG_CONSOLE</span>
+              <span>PROFILE_CONSOLE</span>
             </div>
             <div>CAMERA VECTOR:<br/><span className="text-white text-glow-cyan font-bold">{getCoordinates()}</span></div>
-            <div>ACTIVE SKILL NODE:<br/><span className="text-cyber-pink font-bold">{selectedNodeName || 'IDLE_WAIT'}</span></div>
-            <div>CONTAINER DRIVE:<br/><span className="text-cyber-green font-bold">{selectedProjectName || 'IDLE_WAIT'}</span></div>
+            <div>ACTIVE STACK NODE:<br/><span className="text-cyber-pink font-bold">{selectedNodeName || 'NONE_SELECTED'}</span></div>
+            <div>ACTIVE PROJECT:<br/><span className="text-cyber-green font-bold">{selectedProjectName || 'NONE_SELECTED'}</span></div>
           </div>
 
           {/* Right Side: Social links vertical cyber dock */}
@@ -161,7 +161,7 @@ export default function OverlayHUD({
             <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-cyber-cyan" />
 
             <a 
-              href="https://github.com" 
+              href="https://github.com/Easwarp45" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-8 h-8 rounded border border-cyber-cyan/15 hover:border-cyber-cyan/60 flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/10 transition-all duration-300"
@@ -169,12 +169,20 @@ export default function OverlayHUD({
               <GithubIcon className="w-4 h-4" />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/search/results/all/?keywords=Easwaramurthy%20P" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-8 h-8 rounded border border-cyber-cyan/15 hover:border-cyber-cyan/60 flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/10 transition-all duration-300"
             >
               <LinkedinIcon className="w-4 h-4" />
+            </a>
+            <a 
+              href="https://www.instagram.com/eswar.png/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded border border-cyber-cyan/15 hover:border-cyber-cyan/60 flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/10 transition-all duration-300"
+            >
+              <ExternalLink className="w-4 h-4" />
             </a>
             <a 
               href="mailto:contact@easwar.dev" 
