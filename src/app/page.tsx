@@ -1,65 +1,120 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
+
+// UI Overlays
+import Loader from '@/components/ui/Loader';
+import OverlayHUD from '@/components/ui/OverlayHUD';
+import ContactForm from '@/components/ui/ContactForm';
+import ProjectsModal from '@/components/ui/ProjectsModal';
+import StackDetailsCard from '@/components/ui/StackDetailsCard';
+import CustomCursor from '@/components/ui/CustomCursor';
+
+// Type definitions
+import { TechNode } from '@/components/canvas/SystemArchitecture';
+import { ProjectData } from '@/components/canvas/DeploymentContainers';
+
+// Dynamically import the Client Canvas to bypass SSR hydration issues with Three.js
+const ClientCanvas = dynamic(() => import('@/components/canvas/ClientCanvas'), {
+  ssr: false,
+});
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState<string>('home');
+  
+  // Selection states
+  const [selectedNode, setSelectedNode] = useState<TechNode | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  
+  // 3D form transmission animation state
+  const [isTransmitting, setIsTransmitting] = useState<boolean>(false);
+
+  const handleSelectNode = (node: TechNode | null) => {
+    setSelectedProject(null); // Clear project selection if details overlay opens
+    setSelectedNode(node);
+  };
+
+  const handleSelectProject = (project: ProjectData | null) => {
+    setSelectedNode(null); // Clear node selection if details overlay opens
+    setSelectedProject(project);
+  };
+
+  const handleSectionChange = (section: string) => {
+    // Reset selection overlays when transitioning pages
+    setSelectedNode(null);
+    setSelectedProject(null);
+    setActiveSection(section);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <main className="relative min-h-screen w-screen overflow-hidden text-white scanlines">
+      {/* 1. Cyberpunk Overlay Grid & Vignette */}
+      <div className="cyber-grid pointer-events-none" />
+      <div className="cyber-vignette pointer-events-none" />
+
+      {/* 2. Interactive R3F 3D Canvas */}
+      <ClientCanvas
+        activeSection={activeSection}
+        selectedNode={selectedNode}
+        onSelectNode={handleSelectNode}
+        selectedProject={selectedProject}
+        onSelectProject={handleSelectProject}
+        isTransmitting={isTransmitting}
+        onAnimationComplete={() => setIsTransmitting(false)}
+      />
+
+      {/* 3D Viewport Translucent Readability Mask */}
+      <div className="fixed inset-0 bg-[#020205]/60 backdrop-blur-[0.5px] pointer-events-none z-5" />
+
+      {/* Home Typographic Overlay */}
+      {activeSection === 'home' && (
+        <div className="absolute bottom-[18%] left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 z-20 pointer-events-auto font-mono text-center w-[90%] max-w-[500px]">
+          <h2 className="text-[10px] md:text-xs font-bold tracking-[0.18em] text-white text-glow-cyan uppercase whitespace-nowrap">
+            ROLE: FULL-STACK SOFTWARE ENGINEER // LOCATION: CHENNAI, IN
+          </h2>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/Easwar_Resume.pdf"
+            download="Easwar_Resume.pdf"
+            className="px-5 py-2.5 border border-cyber-cyan/40 bg-cyber-cyan/10 hover:bg-cyber-cyan/20 text-cyber-cyan hover:text-white rounded text-[10px] font-bold tracking-widest uppercase transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] cursor-pointer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            [ DOWNLOAD_RESUME_DATA ]
           </a>
         </div>
-      </main>
-    </div>
+      )}
+
+      {/* 3. 2D HUD Navigation Overlay */}
+      <OverlayHUD
+        activeSection={activeSection}
+        setActiveSection={handleSectionChange}
+        selectedNodeName={selectedNode?.name}
+        selectedProjectName={selectedProject?.name}
+      />
+
+      {/* 4. Contact Gateway Input Modal */}
+      <ContactForm
+        activeSection={activeSection}
+        isTransmitting={isTransmitting}
+        setIsTransmitting={setIsTransmitting}
+      />
+
+      {/* 5. Projects Specs Details Card */}
+      <ProjectsModal
+        selectedProject={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
+
+      {/* 6. System Tech Spec Details Card */}
+      <StackDetailsCard
+        selectedNode={selectedNode}
+        onClose={() => setSelectedNode(null)}
+      />
+
+      {/* 7. Animated 3D Loader wrapped in React Suspense */}
+      <Loader />
+
+      {/* 8. Glowing Cyber Cursor */}
+      <CustomCursor />
+    </main>
   );
 }
