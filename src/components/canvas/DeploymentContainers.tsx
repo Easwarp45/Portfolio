@@ -23,47 +23,47 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     id: 'kanakku-platform',
-    name: 'Kanakku',
+    name: 'Kanakku Platform',
     category: 'Finance Workflow',
-    description: 'An Indian-market expense tracker that helps people log spending, spot trends, and stay on top of day-to-day budgeting without adding friction.',
-    tech: ['Flutter', 'Supabase', 'Riverpod', 'PostgreSQL', 'Auth'],
+    description: 'An Indian-market expense tracker that helps users log spending, spot trends, and stay on top of day-to-day budgeting without adding friction.',
+    tech: ['Flutter', 'Supabase', 'Riverpod', 'PostgreSQL', 'Dart'],
     metrics: [
       { label: 'Focus', value: 'Budgeting' },
-      { label: 'Platform', value: 'Mobile' },
-      { label: 'Status', value: 'Shipping' }
+      { label: 'Platform', value: 'Mobile App' },
+      { label: 'Database', value: 'PostgreSQL' }
     ],
     liveUrl: '/demos/kanakku',
     githubUrl: 'https://github.com/Easwarp45/kanakku',
     pos: [-16.0, 0.2, 0.5]
   },
   {
-    id: 'keyforge-lab',
-    name: 'KeyForge',
-    category: 'Auth Experience',
-    description: 'A passwordless authentication and key-management concept exploring WebAuthn, SRP, and a cleaner sign-in flow for modern products.',
-    tech: ['Next.js', 'TypeScript', 'WebAuthn', 'Supabase', 'Node.js'],
+    id: 'hirewise-platform',
+    name: 'HireWise',
+    category: 'SaaS AI Automation',
+    description: 'An automated recruitment pipeline system that scores resume structures, filters candidate profiles, and manages talent acquisition stages for hiring teams.',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS'],
     metrics: [
-      { label: 'Flow', value: 'Passwordless' },
-      { label: 'Security', value: 'WebAuthn' },
-      { label: 'Focus', value: 'Trust' }
+      { label: 'Type', value: 'Recruiter SaaS' },
+      { label: 'API Latency', value: '< 100ms' },
+      { label: 'Scale', value: 'Enterprise' }
     ],
-    liveUrl: '/demos/keyforge',
-    githubUrl: 'https://github.com/Easwarp45/keyforge',
+    liveUrl: 'https://hirewise-zeta.vercel.app/',
+    githubUrl: 'https://github.com/deepak-9962/hirewise',
     pos: [-13.8, 1.2, -0.5]
   },
   {
-    id: 'quantum-portfolio',
-    name: '3D Developer Portfolio',
-    category: 'Creative Engineering',
-    description: 'An immersive developer portfolio that uses 3D composition, motion, and layered content to present projects and skills in a memorable way.',
-    tech: ['Next.js', 'React Three Fiber', 'GSAP', 'Tailwind CSS', 'TypeScript'],
+    id: 'keyforge-platform',
+    name: 'KeyForge (Secure Pass)',
+    category: 'Auth Experience',
+    description: 'A secure authentication and passwordless key-management concept exploring WebAuthn protocols, secure cryptographic credential trust, and SRP handshakes.',
+    tech: ['Next.js', 'TypeScript', 'WebAuthn', 'Supabase', 'Node.js'],
     metrics: [
-      { label: 'Lighthouse', value: '95+' },
-      { label: 'Load Time', value: '< 2.5s' },
-      { label: 'Sections', value: '5+' }
+      { label: 'Standard', value: 'WebAuthn/FIDO2' },
+      { label: 'Database', value: 'Supabase BaaS' },
+      { label: 'Auth Flow', value: 'Passwordless' }
     ],
-    liveUrl: '/demos/portfolio',
-    githubUrl: 'https://github.com/Easwarp45/Portfolio',
+    liveUrl: '/demos/keyforge',
+    githubUrl: 'https://github.com/Easwarp45/secure_pass',
     pos: [-12.0, -0.8, 0.5]
   }
 ];

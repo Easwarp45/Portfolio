@@ -1,15 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 // UI Overlays
 import Loader from '@/components/ui/Loader';
 import OverlayHUD from '@/components/ui/OverlayHUD';
-import ContactForm from '@/components/ui/ContactForm';
-import ProjectsModal from '@/components/ui/ProjectsModal';
-import StackDetailsCard from '@/components/ui/StackDetailsCard';
-import PortfolioSections from '@/components/ui/PortfolioSections';
 import CustomCursor from '@/components/ui/CustomCursor';
 
 // Type definitions
@@ -23,8 +19,17 @@ const ClientCanvas = dynamic(() => import('@/components/canvas/ClientCanvas'), {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>('home');
+  const [visitedSections, setVisitedSections] = useState<string[]>(['home']);
+
+  useEffect(() => {
+    setVisitedSections((prev) => 
+      prev.includes(activeSection) ? prev : [...prev, activeSection]
+    );
+  }, [activeSection]);
+
+  const scanPercentage = Math.round((visitedSections.length / 4) * 100);
   
-  // Selection states
+  // Selection states (for Stack nodes and Project containers)
   const [selectedNode, setSelectedNode] = useState<TechNode | null>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
   
@@ -34,11 +39,17 @@ export default function Home() {
   const handleSelectNode = (node: TechNode | null) => {
     setSelectedProject(null); // Clear project selection if details overlay opens
     setSelectedNode(node);
+    if (node) {
+      setActiveSection('about'); // Force transition to Stack tab when clicking a 3D node
+    }
   };
 
   const handleSelectProject = (project: ProjectData | null) => {
     setSelectedNode(null); // Clear node selection if details overlay opens
     setSelectedProject(project);
+    if (project) {
+      setActiveSection('projects'); // Force transition to Projects tab when clicking a 3D container
+    }
   };
 
   const handleSectionChange = (section: string) => {
@@ -68,43 +79,23 @@ export default function Home() {
       {/* 3D Viewport Translucent Readability Mask */}
       <div className="fixed inset-0 bg-[#020205]/60 backdrop-blur-[0.5px] pointer-events-none z-5" />
 
-      <PortfolioSections
-        activeSection={activeSection}
-        setActiveSection={handleSectionChange}
-        onSelectProject={handleSelectProject}
-      />
-
-      {/* 3. 2D HUD Navigation Overlay */}
+      {/* 3. Redesigned HUD Cockpit Navigation & Control Deck Panel */}
       <OverlayHUD
         activeSection={activeSection}
         setActiveSection={handleSectionChange}
-        selectedNodeName={selectedNode?.name}
-        selectedProjectName={selectedProject?.name}
-      />
-
-      {/* 4. Contact Gateway Input Modal */}
-      <ContactForm
-        activeSection={activeSection}
+        selectedNode={selectedNode}
+        setSelectedNode={handleSelectNode}
+        selectedProject={selectedProject}
+        setSelectedProject={handleSelectProject}
         isTransmitting={isTransmitting}
         setIsTransmitting={setIsTransmitting}
+        scanPercentage={scanPercentage}
       />
 
-      {/* 5. Projects Specs Details Card */}
-      <ProjectsModal
-        selectedProject={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
-
-      {/* 6. System Tech Spec Details Card */}
-      <StackDetailsCard
-        selectedNode={selectedNode}
-        onClose={() => setSelectedNode(null)}
-      />
-
-      {/* 7. Animated 3D Loader wrapped in React Suspense */}
+      {/* 4. Animated 3D Loader wrapped in React Suspense */}
       <Loader />
 
-      {/* 8. Glowing Cyber Cursor */}
+      {/* 5. Glowing Cyber Cursor */}
       <CustomCursor />
     </main>
   );
